@@ -172,5 +172,7 @@ cython_debug/
 #.idea/
 
 /media
+/media/photos/2022
+
 
 # End of https://www.toptal.com/developers/gitignore/api/django
