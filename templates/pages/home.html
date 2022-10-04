@@ -1,6 +1,7 @@
 {% extends 'pages/base.html' %}
 
 {% block content %}
+{% load humanize %}
 {% load static %}
 <!-- Banner start -->
 <div class="banner" id="banner">
@@ -131,7 +132,7 @@
                             <a href="car-details.html" class="car-img">
                                 <div class="tag-2" style="color: rgb(255, 166, 0) ; background-color: rgb(39, 39, 51) ;">Featured</div>
                                 <div class="price-box">
-                                    <span>${{prod.prod_price}}</span>
+                                    <span>${{prod.prod_price | intcomma}}</span>
                                 </div>
                                 <img class="d-block w-100" src="{{prod.photo.url}}" alt="car">
                             </a>
@@ -139,19 +140,27 @@
                                 <div class="overlap-box">
                                     <div class="overlap-btns-area">
                                         <div class="car-magnify-gallery">
+                                            {% if prod.photo %}
                                             <a href="{{prod.photo.url}}" class="overlap-btn">
                                                 <i class="fa fa-expand"></i>
                                                 <img class="hidden" src="{{prod.photo.url}}">
                                             </a>
+                                            {% endif %}
+                                            {% if prod.photo2 %}
                                             <a href="{{prod.photo2.url}}" class="hidden">
                                                 <img class="hidden" src="{{prod.photo2.url}}">
                                             </a>
+                                            {% endif %}
+                                            {% if prod.photo3 %}
                                             <a href="{{prod.photo3.url}}" class="hidden">
                                                 <img class="hidden" src="{{prod.photo3.url}}">
                                             </a>
+                                            {% endif %}
+                                            {% if prod.photo4 %}
                                             <a href="{{prod.photo4.url}}" class="hidden">
                                                 <img class="hidden" src="{{prod.photo4.url}}">
                                             </a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -227,22 +236,33 @@
                             <div class="overlap-box">
                                 <div class="overlap-btns-area">
                                     <div class="car-magnify-gallery">
+                                        {% if prod.photo %}
                                         <a href="{{prod.photo.url}}" class="overlap-btn">
                                             <i class="fa fa-expand"></i>
                                             <img class="hidden" src="{{prod.photo.url}}">
                                         </a>
+                                        {% endif %}
+                                        {% if prod.photo1 %}
                                         <a href="{{prod.photo1.url}}" class="hidden">
                                             <img class="hidden" src="{{prod.photo1.url}}">
                                         </a>
+                                        {% endif %}
+                                        {% if prod.photo2 %}
                                         <a href="{{prod.photo2.url}}" class="hidden">
                                             <img class="hidden" src="{{prod.photo2.url}}">
                                         </a>
+                                        {% endif %}
+                                        {% if prod.photo3 %}
                                         <a href="{{prod.photo3.url}}" class="hidden">
                                             <img class="hidden" src="{{prod.photo3.url}}">
                                         </a>
+                                        {% endif %}
+                                        {% if prod.photo4 %}
+                                        
                                         <a href="{{prod.photo4.url}}" class="hidden">
                                             <img class="hidden" src="{{prod.photo4.url}}">
                                         </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +283,7 @@
                             <p class="cartype">{{prod.color}}</p>
                         </div>
                         <div class="pull-right">
-                            <p class="price">${{prod.prod_price}}</p>
+                            <p class="price">${{prod.prod_price | intcomma}}</p>
                         </div>
                     </div>
                 </div>
