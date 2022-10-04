@@ -1,6 +1,7 @@
 from turtle import color
 from django.db import models
 from datetime import datetime
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Car(models.Model):
@@ -47,7 +48,7 @@ class Car(models.Model):
     year = models.IntegerField('year', choices = year_choice)
     prod_condition = models.CharField(max_length=100)
     prod_price = models.IntegerField()
-    prod_description = models.TextField(max_length=200)
+    prod_description = RichTextField()
     photo = models.ImageField(upload_to = 'photos/%Y/%m/%d', blank = True)
     photo1 = models.ImageField(upload_to = 'photos/%Y/%m/%d', blank = True)
     photo2 = models.ImageField(upload_to = 'photos/%Y/%m/%d', blank = True)
@@ -55,6 +56,8 @@ class Car(models.Model):
     photo4 = models.ImageField(upload_to = 'photos/%Y/%m/%d', blank = True)
     prod_features = models.CharField(choices=feature_choices, max_length=100)
     prod_style = models.CharField(choices=feature_choices, max_length=100)
-    is_featured = models.BooleanField(max_length=100)
+    is_featured = models.BooleanField(default= False)
     # You can add many more
     added_date = models.DateTimeField(auto_now_add=True)
+    
+    
