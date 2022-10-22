@@ -12,16 +12,16 @@
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
                     <h3>Wow Factor Standard</h3>
                     <h5>Allow us to guide you through the innovative stress<br>
-                        free approach in finding your dream car.</h5>
+                        free approach in finding your dream Products.</h5>
                     <a href="services.html" class="btn btn-lg btn-theme">Read more</a>
                 </div>
             </div>
             <div class="carousel-item banner-max-height item-bg">
                 <img class="d-block w-100 h-100" src="{% static 'img/car-2.jpg' %}" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
-                    <h3>Explore Your Dream Car</h3>
+                    <h3>Explore Your Dream Products</h3>
                     <h5>Allow us to guide you through the innovative stress<br>
-                        free approach in finding your dream car.</h5>
+                        free approach in finding your dream Products.</h5>
                     <a href="#" class="btn btn-lg btn-theme">Read more</a>
                 </div>
             </div>
@@ -30,59 +30,47 @@
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
                     <h3>We Are Wheel</h3>
                     <h5>Allow us to guide you through the innovative stress<br>
-                        free approach in finding your dream car.</h5>
+                        free approach in finding your dream Products.</h5>
                     <a href="#" class="btn btn-lg btn-theme">Read more</a>
                 </div>
             </div>
         </div>
         <!-- Search box 3 start -->
         <div class="search-box-4 sb-8">
-            <form action="#" method="">
+            <form action="{% url 'search' %}" method="">
                 <div class="form-group">
-                    <input type="text" name="keyword" placeholder="Search by name" class="form-control">
+                    <input type="text"  placeholder="Search by name" class="form-control" name="search">
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-brand">
-                        <option selected="true" disabled="disabled">Brand</option>
-                        <option>Audi</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Nissan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control search-fields" name="select-make">
+                    <select class="form-control search-fields" name="prod_model">
                         <option selected="true" disabled="disabled">Model</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Lamborghini Huracán</option>
-                        <option>Sports Car</option>
+                        {% for model in model_search %}
+                            <option value="{{ model }}">{{ model }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-location">
+                    <select class="form-control search-fields" name="city">
                         <option selected="true" disabled="disabled">Location</option>
-                        <option>United States</option>
-                        <option>United Kingdom</option>
+                        {% for location in city_search %}
+                            <option value="{{ location }}">{{ location }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-year">
+                    <select class="form-control search-fields" name="year">
                         <option selected="true" disabled="disabled">Year</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
+                        {% for year in year_search %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-type">
-                        <option selected="true" disabled="disabled">Select Type Of Car</option>
-                        <option>Sedan</option>
-                        <option>Sports</option>
-                        <option>Hatchback</option>
-                        <option>Pickup Truck</option>
-                        <option>SUV</option>
+                    <select class="form-control search-fields" name="type">
+                        <option selected="true" disabled="disabled">Select Type Of Products</option>
+                        {% for type in style_search %}
+                            <option value="{{ type }}">{{ type }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="range-slider clearfix">
@@ -129,12 +117,12 @@
                 <div class="slick-slide-item">
                     <div class="car-box-3">
                         <div class="car-thumbnail">
-                            <a href="car-details.html" class="car-img">
+                            <a href="{% url 'prod_details' prod.id %}" class="car-img">
                                 <div class="tag-2" style="color: rgb(255, 166, 0) ; background-color: rgb(39, 39, 51) ;">Featured</div>
                                 <div class="price-box">
                                     <span>${{prod.prod_price | intcomma}}</span>
                                 </div>
-                                <img class="d-block w-100" src="{{prod.photo.url}}" alt="car">
+                                <img class="d-block w-100" src="{{prod.photo.url}}" alt="car" style="min-height: 262px; min-width: 262px ;">
                             </a>
                             <div class="carbox-overlap-wrapper">
                                 <div class="overlap-box">
@@ -168,10 +156,10 @@
                         </div>
                         <div class="detail">
                             <h1 class="title">
-                                <a href="car-details.html">{{prod.prod_title}}</a>
+                                <a href="{% url 'prod_details' prod.id %}">{{prod.prod_title}}</a>
                             </h1>
                             <div class="location">
-                                <a href="car-details.html">
+                                <a href="{% url 'prod_details' prod.id %}">
                                     <i class="flaticon-pin"></i>{{prod.city}}, {{prod.state}}
                                 </a>
                             </div>
@@ -215,9 +203,9 @@
             <div class="col-lg-4 col-md-6">
                 <div class="car-box">
                     <div class="car-thumbnail">
-                        <a href="car-details.html" class="car-img">
+                        <a href="{% url 'prod_details' prod.id %}" class="car-img">
                             <div class="tag">For Sale</div>
-                            <img class="d-block w-100" src="{{prod.photo.url}}" alt="car">
+                            <img class="d-block w-100" src="{{prod.photo.url}}" alt="car" style="min-height: 262px; min-width: 262px ;">
                             <div class="facilities-list clearfix">
                                 <ul>
                                     <li>
@@ -270,10 +258,10 @@
                     </div>
                     <div class="detail">
                         <h1 class="title">
-                            <a href="car-details.html">{{prod.prod_title}}</a>
+                            <a href="{% url 'prod_details' prod.id %}">{{prod.prod_title}}</a>
                         </h1>
                         <div class="location">
-                            <a href="car-details.html">
+                            <a href="{% url 'prod_details' prod.id %}">
                                 <i class="flaticon-pin"></i>{{prod.city}}, {{prod.state}}
                             </a>
                         </div>
@@ -313,7 +301,7 @@
                     <div class="team-1">
                         <div class="photo">
                             <a href="#">
-                                <img src="{{team.photo.url}}" alt="team-1" class="img-fluid">
+                                <img src="{{team.photo.url}}" alt="team-1" class="img-fluid" style="min-height: 262px; min-width: 262px ;">
                             </a>
                             <div class="social-list clearfix">
                                 <a href="{{team.facebook_link}}" class="facebook-bg"><i class="fa fa-facebook"></i></a>
@@ -354,14 +342,7 @@
 
 
 
-<!-- Full Page Search -->
-<div id="full-page-search">
-    <button type="button" class="close">×</button>
-    <form action="https://storage.googleapis.com/theme-vessel/carhouse/index.html#" class="search-header">
-        <input type="search" value="" placeholder="type keyword(s) here. Eg: audi, benz etc" />
-        <button type="submit" class="btn btn-sm button-theme">Search</button>
-    </form>
-</div>
+
 
 <!-- Car Overview Modal -->
 <div class="car-model-2">

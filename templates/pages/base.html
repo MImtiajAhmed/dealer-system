@@ -50,6 +50,15 @@
 
 {% endblock %}
 
+<!-- Full Page Search -->
+<div id="full-page-search">
+    <button type="button" class="close">×</button>
+    <form action="{% url 'search' %}" class="search-header">
+        <input type="search" value="" placeholder="Type Your Query Here...." name="keyword"/>
+        <button type="submit" class="btn btn-sm button-theme">Search</button>
+    </form>
+</div>
+
 {% include 'pages/includes/footer.html' %}
 
 <script src="{% static 'js/jquery-2.2.0.min.js' %}"></script>
